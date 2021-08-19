@@ -51,5 +51,15 @@ func main() {
 		c.Set(fiber.HeaderContentType, fiber.MIMEApplicationJSON)
 		return c.Status(fiber.StatusOK).JSON(data)
 	})
+	app.Get("/api/v1/classmates/:id", func(c *fiber.Ctx) error {
+		id,_ := c.ParamsInt("id")
+		for _ ,v := range classmates {
+			if v.ID == id {
+				c.Set(fiber.HeaderContentType, fiber.MIMEApplicationJSON)
+				return c.Status(fiber.StatusOK).JSON(v)
+			}
+		}
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{"message": "classmate not found"})
+	})
 	app.Listen(":8080")
 }
