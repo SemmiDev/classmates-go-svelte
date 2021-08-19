@@ -1,1 +1,1 @@
-# classmates-go-svelte
+# classmates go svelte
